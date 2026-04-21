@@ -1,11 +1,18 @@
-Apply file changes using opencode’s patch format.
+Apply file changes using opencode's patch format.
 
-Wrap the patch in:
+Wrap the whole patch in:
   *** Begin Patch
   …file sections…
   *** End Patch
 
-Use headers: `*** Add File: path`, `*** Delete File: path`, `*** Update File: path`.
-Prefix every added line with `+`.
+Each file section starts with one header:
+- `*** Add File: path` — body is the initial contents, every line prefixed with `+`.
+- `*** Delete File: path` — no body.
+- `*** Update File: path` — optionally followed by `*** Move to: new-path` to rename. Body is one or more hunks.
 
-Good fit for models that handle patch blocks reliably.
+Update hunks use unified-diff style:
+- `@@ optional-context` starts a hunk (the context after `@@` is a recognizable unchanged line, e.g. a function signature).
+- ` ` (space) = unchanged context line
+- `-`          = removed line
+- `+`          = added line
+- `*** End of File` closes a hunk that extends to EOF.

@@ -1,4 +1,5 @@
-Fetch a URL over HTTP(S); the URL must include the scheme (https://…).
+Fetch a URL over HTTP(S); the URL must include the scheme (http:// or https://) — other schemes are rejected.
 
-Default response format is markdown.
-If a redirect lands on another host, re-fetch the final URL when needed.
+Default response format is markdown; HTML is converted on the fly. Text and HTML formats are also available.
+
+Image responses are returned as file attachments (no conversion). Responses larger than 5MB are rejected.

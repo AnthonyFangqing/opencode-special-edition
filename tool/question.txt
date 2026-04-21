@@ -1,3 +1,7 @@
 Ask the user blocking, structured questions through the UI.
 
-Use for real unknowns—not for low-stakes “should I continue?” (answer those in normal chat).
+Use for real unknowns — not for low-stakes "should I continue?" (answer those in normal chat).
+
+By default `custom` is true, which adds a "Type your own answer" option automatically — do not include "Other" or similar catch-all entries yourself.
+Set `multiple: true` when selecting more than one option is valid.
+If you recommend an option, put it first and append "(Recommended)" to its label.

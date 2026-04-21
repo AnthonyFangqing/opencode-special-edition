@@ -3,7 +3,7 @@ Read a file or directory.
 Text lines are returned as `N: content` (line number, colon, space).
 When feeding text into Edit, copy only the content after that prefix—never include the `N: ` part.
 
-Use offset/limit for large files.
+Use offset/limit for large files; any single line over 2000 characters is truncated with a trailing ellipsis.
 If you do not know the path, use Glob or Grep first.
 
 Supports images and PDFs as attachments.
