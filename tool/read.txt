@@ -1,0 +1,1 @@
+Read a file or directory. Supports text (with offset/limit), images, and PDFs. Use glob/grep to find files first if you don't know the exact path.

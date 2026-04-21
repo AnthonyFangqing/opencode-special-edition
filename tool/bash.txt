@@ -1,0 +1,1 @@
+Execute a bash command. Output truncates after 2000 lines/50KB; full output saved to a temp file. Use workdir param instead of cd chains. Avoid for file ops — use Read/Write/Edit/Glob/Grep instead. Only commit when the user asks.

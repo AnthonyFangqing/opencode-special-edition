@@ -1,0 +1,1 @@
+Create and manage a task list. Use for 3+ step tasks. States: pending, in_progress, completed. Mark completed immediately. Only one in_progress at a time.

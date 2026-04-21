@@ -1,0 +1,1 @@
+Replace exact strings in a file. oldString must be unique in the file. For multiple edits to the same file, use multiedit. You must have read the file first.

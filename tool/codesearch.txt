@@ -1,0 +1,1 @@
+Code search via Exa API. Returns documentation and code examples for libraries, SDKs, and APIs.

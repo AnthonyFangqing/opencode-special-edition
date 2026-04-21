@@ -1,0 +1,1 @@
+Switch to plan mode. Use for complex tasks that benefit from planning before implementation.

@@ -1,0 +1,1 @@
+LSP operations: goToDefinition, findReferences, hover, documentSymbol, workspaceSymbol, goToImplementation, call hierarchy. Requires an LSP server for the file type.

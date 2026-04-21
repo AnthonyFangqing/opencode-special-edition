@@ -1,0 +1,1 @@
+Fetch content from a URL. Returns markdown by default. If redirected to a different host, re-fetch the redirect URL.

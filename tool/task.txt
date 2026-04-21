@@ -1,0 +1,1 @@
+Launch a sub-agent. Provide a detailed prompt with all context. Use for complex multi-step work or codebase exploration. Launch multiple in parallel when independent.

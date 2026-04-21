@@ -1,0 +1,1 @@
+Web search. Returns relevant results with content. Use for current information beyond training data.

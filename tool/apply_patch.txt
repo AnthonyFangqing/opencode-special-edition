@@ -1,0 +1,1 @@
+Apply a patch using a stripped-down diff format. Preferred for GPT models. Use the *** Add/Delete/Update File headers.

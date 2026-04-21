@@ -1,0 +1,1 @@
+Load a skill when the task matches its description. Injects the skill's instructions into the conversation.
