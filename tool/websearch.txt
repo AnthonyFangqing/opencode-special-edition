@@ -1,1 +1,3 @@
-Web search. Returns relevant results with content. Use for current information beyond training data.
+Search the public web.
+
+Use for time-sensitive facts, current events, or documentation that is not in the workspace.

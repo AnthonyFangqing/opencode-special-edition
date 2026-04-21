@@ -1,1 +1,0 @@
-Multiple edits to one file in a single call. Edits apply sequentially — later edits see the result of earlier ones. All must succeed or none apply.

@@ -1,1 +1,4 @@
-Fetch content from a URL. Returns markdown by default. If redirected to a different host, re-fetch the redirect URL.
+Fetch a URL over HTTP(S); the URL must include the scheme (https://…).
+
+Default response format is markdown.
+If a redirect lands on another host, re-fetch the final URL when needed.

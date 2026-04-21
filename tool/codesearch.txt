@@ -1,1 +1,3 @@
-Code search via Exa API. Returns documentation and code examples for libraries, SDKs, and APIs.
+Search via Exa for library and API documentation, SDK examples, and similar external code context.
+
+Use for “how do I use X?” when the answer is not in the repo.

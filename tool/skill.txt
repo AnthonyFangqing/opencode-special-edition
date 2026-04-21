@@ -1,1 +1,3 @@
-Load a skill when the task matches its description. Injects the skill's instructions into the conversation.
+Load a skill by name from available_skills.
+
+Pulls the skill’s instructions into the session when you need that capability.

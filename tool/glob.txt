@@ -1,1 +1,6 @@
-Find files by glob pattern (e.g. "**/*.ts"). Returns paths sorted by mtime. Respects .gitignore.
+Find file paths by glob pattern (e.g. `**/*.ts`).
+
+Results are sorted by modification time and respect .gitignore.
+When several independent patterns help, call Glob in parallel.
+
+For open-ended exploration that needs many glob+grep rounds, consider Task.

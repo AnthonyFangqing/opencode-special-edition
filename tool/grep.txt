@@ -1,1 +1,6 @@
-Search file contents with regex. Returns matching file paths and line numbers. Respects .gitignore. Prefer over bash grep.
+Search file contents with ripgrep (regex).
+
+Returns matching paths and line numbers; optional include globs narrow file sets.
+Prefer this over shell grep for locating matches in the repo.
+
+If you need per-file match counts or heavy aggregation, bash `rg` may fit better than this tool.

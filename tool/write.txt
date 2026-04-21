@@ -1,1 +1,6 @@
-Create or overwrite a file. You must have read the file first if it exists. Prefer edit over write for existing files.
+Create or overwrite a file.
+
+If the path already exists, Read it first or the tool will error.
+Prefer Edit for small changes to existing files.
+
+Do not create documentation or README files unless the user asked.

@@ -1,1 +1,9 @@
-Read a file or directory. Supports text (with offset/limit), images, and PDFs. Use glob/grep to find files first if you don't know the exact path.
+Read a file or directory.
+
+Text lines are returned as `N: content` (line number, colon, space).
+When feeding text into Edit, copy only the content after that prefix—never include the `N: ` part.
+
+Use offset/limit for large files.
+If you do not know the path, use Glob or Grep first.
+
+Supports images and PDFs as attachments.

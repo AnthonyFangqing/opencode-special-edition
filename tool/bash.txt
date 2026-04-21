@@ -1,1 +1,7 @@
-Execute a bash command. Output truncates after 2000 lines/50KB; full output saved to a temp file. Use workdir param instead of cd chains. Avoid for file ops — use Read/Write/Edit/Glob/Grep instead. Only commit when the user asks.
+Run a command in a persistent shell.
+Default cwd is the session worktree; use workdir instead of cd chains.
+
+Output truncates after ~2000 lines / 50KB; full output is written to a temp file.
+Use Read or Grep on that path — do not pipe through head/tail to “fix” truncation.
+
+For finding, reading, or editing files, prefer Glob, Grep, Read, Edit, and Write — not cat, find, grep, or sed in bash.

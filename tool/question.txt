@@ -1,1 +1,3 @@
-Ask the user a clarifying question. Use when truly blocked — not for "should I proceed?" questions.
+Ask the user blocking, structured questions through the UI.
+
+Use for real unknowns—not for low-stakes “should I continue?” (answer those in normal chat).

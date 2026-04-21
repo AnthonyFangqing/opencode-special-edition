@@ -1,1 +1,8 @@
-Replace exact strings in a file. oldString must be unique in the file. For multiple edits to the same file, use multiedit. You must have read the file first.
+Exact string replacement: oldString → newString in one file.
+
+You must Read the file first.
+oldString must appear exactly once unless you set replaceAll — if you get “multiple matches”, add surrounding context.
+
+Never put Read’s line-number prefix (`123: `) inside oldString or newString.
+
+Prefer Edit over Write for small changes to existing files.

@@ -1,1 +1,11 @@
-Apply a patch using a stripped-down diff format. Preferred for GPT models. Use the *** Add/Delete/Update File headers.
+Apply file changes using opencode’s patch format.
+
+Wrap the patch in:
+  *** Begin Patch
+  …file sections…
+  *** End Patch
+
+Use headers: `*** Add File: path`, `*** Delete File: path`, `*** Update File: path`.
+Prefix every added line with `+`.
+
+Good fit for models that handle patch blocks reliably.

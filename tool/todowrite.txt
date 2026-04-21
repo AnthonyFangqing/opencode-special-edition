@@ -1,1 +1,6 @@
-Create and manage a task list. Use for 3+ step tasks. States: pending, in_progress, completed. Mark completed immediately. Only one in_progress at a time.
+Replace the session todo list in one shot.
+
+Use for tasks with several meaningful steps (roughly 3+).
+Statuses: pending, in_progress, completed, cancelled.
+
+Keep at most one item in_progress; mark items completed as you finish.

@@ -1,1 +1,9 @@
-Launch a sub-agent. Provide a detailed prompt with all context. Use for complex multi-step work or codebase exploration. Launch multiple in parallel when independent.
+Run a sub-agent with its own context.
+
+Required: subagent_type (a configured agent name), a short description, and a self-contained prompt.
+Put slash-command invocations inside the prompt text.
+
+Optional task_id resumes the same sub-session instead of starting fresh.
+
+The user does not see raw sub-agent output—you must summarize results for them.
+Launch independent sub-agents in parallel in one assistant turn when useful.
