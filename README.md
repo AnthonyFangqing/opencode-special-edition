@@ -1,31 +1,66 @@
 # opencode-special-edition
 
-A plugin for [opencode](https://opencode.ai) that dramatically reduces the token count of prompts sent to LLMs, modeled after [pi](https://github.com/mariozechner/pi)'s minimal philosophy.
+OpenCode plugin that shortens the default system prompt and built-in tool descriptions so each request sends fewer tokens. Inspired by the minimal style of [pi](https://github.com/mariozechner/pi).
 
-Modern coding LLMs are heavily fine-tuned on tool-use and coding-agent patterns. They don't need verbose examples, repeated instructions, or long workflows. They need identity, constraints, and tool names — the JSON schema handles the rest.
+The built-in JSON parameter schemas for tools are unchanged. This package only replaces the long prose descriptions where a shorter version exists.
 
 ## What it does
 
 ### System prompt
 
-Replaces opencode's ~1300-word default system prompt with a ~75-word version. Preserves the environment info block (model name, cwd, date) and AGENTS.md instructions. Removes the redundant skills section.
+Replaces OpenCode’s default system prompt with a shorter version from `prompt/default.txt`. Keeps the environment block (model name, cwd, date), the skills block (see below), and `AGENTS.md` content when OpenCode composes the default layout.
+
+### Skills section (not modified by this plugin)
+
+OpenCode adds a **separate** system fragment listing discovered skills (from `SKILL.md` files under paths such as `skill/`, `skills/`, `.claude`, `.agents`). It is built in `SystemPrompt.skills` and concatenated with env + instructions when assembling the prompt. Typical shape:
+
+```text
+Skills provide specialized instructions and workflows for specific tasks.
+Use the skill tool to load a skill when a task matches its description.
+<available_skills>
+  <skill>
+    <name>…</name>
+    <description>…</description>
+    <location>file://…</location>
+  </skill>
+  …
+</available_skills>
+```
+
+If no skills are loaded, the third part is the line `No skills are currently available.` If the agent has the `skill` permission disabled, this block is omitted entirely.
 
 ### Tool descriptions
 
-Replaces opencode's ~5500-word tool descriptions with ~250-word equivalents. The JSON parameter schemas are still sent in full — the LLM doesn't need prose that restates what the schema already says.
+Supplies shorter description strings from `tool/<tool-id>.txt` for built-in tools OpenCode exposes. Parameter schemas are still the full definitions from OpenCode.
 
-### Savings
+### Rough size comparison
 
-| Component | Before | After | Saved |
-|---|---|---|---|
-| System prompt | ~1800 tokens | ~100 tokens | **~1700** |
-| Tool descriptions | ~5500 tokens | ~350 tokens | **~5150** |
-| Skills section | ~200 tokens | 0 | **~200** |
-| **Total per request** | | | **~7050** |
+| Component | Typical before | With this plugin | Approx. savings |
+|-----------|----------------|------------------|-----------------|
+| System prompt (provider text only) | ~1800 tokens | ~100 tokens | ~1700 |
+| Tool descriptions | ~5500 tokens | ~350 tokens | ~5150 |
+| Skills section | (unchanged) | (unchanged) | — |
+| **Total (order of magnitude)** | | | **~6850** |
+
+Exact counts depend on model tokenizer and OpenCode version.
 
 ## Install
 
-Add to your `opencode.jsonc`:
+### From npm
+
+```bash
+npm install opencode-special-edition
+```
+
+In `opencode.json` / `opencode.jsonc`:
+
+```jsonc
+{
+  "plugin": ["opencode-special-edition"]
+}
+```
+
+### Local path
 
 ```jsonc
 {
@@ -33,32 +68,30 @@ Add to your `opencode.jsonc`:
 }
 ```
 
-Or install as a local plugin in `.opencode/plugin/`:
+### Project plugin directory
 
-```bash
-mkdir -p .opencode/plugin
-cp -r opencode-special-edition/ .opencode/plugin/opencode-special-edition/
-```
-
-Then in `opencode.jsonc`:
-
-```jsonc
-{
-  "plugin": ["./.opencode/plugin/opencode-special-edition/index.ts"]
-}
-```
+Copy or link the package under `.opencode/plugins/` (see [OpenCode plugins](https://opencode.ai/docs/plugins/)). Files there load automatically; you do not have to list them in `plugin` unless you also use npm plugins and want a specific setup.
 
 ## Customization
 
-If you want to add project-specific rules on top of the slim prompt, use `AGENTS.md` — that's what it's for. The plugin preserves AGENTS.md instructions.
+- Project rules: use `AGENTS.md`; this plugin keeps that content when it is injected into the default prompt shape.
+- Full custom system prompt: set `agent.build.prompt` in config. The plugin skips rewriting when the prompt does not look like the default.
 
-If you want to override the slim prompt entirely with your own, set `agent.build.prompt` in `opencode.jsonc`. The plugin detects custom prompts and leaves them alone.
+## What it does not change
 
-## What it doesn't touch
+- The **skills** fragment OpenCode adds (`Skills provide specialized…`, `<available_skills>`, etc.): this plugin does not remove or edit it; it remains after the env block in the composed system text.
+- JSON parameter schemas for tools (still full definitions)
+- Environment lines (model, cwd, date) when present in the default prompt
+- `AGENTS.md` text when present in the composed prompt
+- Plan-mode reminders, compaction/summary/title prompts, or other internal agent prompts
+- MCP tool descriptions (only OpenCode’s built-in tools are overridden here)
 
-- **JSON parameter schemas** — still sent in full for each tool
-- **Environment info** — model name, working directory, date are preserved
-- **AGENTS.md instructions** — preserved as-is
-- **Plan mode reminders** — injected into user messages, not accessible via plugin hooks
-- **Compaction/summary/title prompts** — internal prompts for hidden agents
-- **MCP tool descriptions** — only opencode's built-in tools are trimmed
+## Publish
+
+From this directory, with an npm account and `npm login`:
+
+```bash
+npm publish
+```
+
+Use `npm pack --dry-run` to inspect the tarball before publishing.

@@ -1,20 +1,17 @@
 import type { Hooks } from "@opencode-ai/plugin"
 import { readSlimSystemPrompt, readSlimToolDescriptions } from "./read-content"
 
-// ────────────────────────────────────────────────────────────────────────────
-// opencode-slim — minimal prompt plugin for opencode
-//
-// Philosophy (modeled after pi): modern coding LLMs are heavily fine-tuned on
-// tool-use and coding-agent patterns. They don't need verbose examples,
-// repeated instructions, or long workflows spelled out. They need:
-//   1. Identity + role
-//   2. Critical behavioral constraints (safety, permissions)
-//   3. Tool names + one-line descriptions (the JSON schema already defines params)
-//   4. Project context (AGENTS.md etc — handled outside this plugin)
-//
-// Prompt text lives under prompt/; tool blurbs under tool/ — same idea as
-// opencode's session/prompt/*.txt and src/tool/*.txt.
-// ────────────────────────────────────────────────────────────────────────────
+/*
+ * OpenCode plugin: replace only the default *provider* system text (from
+ * prompt/default.txt) and slim built-in tool descriptions (from tool/).
+ *
+ * The skills block (“Skills provide specialized…”, <available_skills>, etc.)
+ * is appended after the env block in the same composed string. We anchor on
+ * the env line “You are powered by the model named” and assign
+ * slimPrompt + "\n" + text.slice(envIdx) so everything from the env block
+ * onward—including skills and AGENTS.md instructions—is kept; we do not strip
+ * or rewrite the skills section.
+ */
 
 const SLIM_SYSTEM_PROMPT = readSlimSystemPrompt()
 const SLIM_TOOLS = readSlimToolDescriptions()
@@ -40,20 +37,10 @@ export default async function plugin(): Promise<Hooks> {
         if (!isDefaultPrompt) continue
 
         if (envIdx !== -1) {
+          /* Preserve env, skills, and instruction fragments after this marker. */
           output.system[i] = SLIM_SYSTEM_PROMPT + "\n" + text.slice(envIdx)
         } else {
           output.system[i] = SLIM_SYSTEM_PROMPT
-        }
-
-        const skillsIdx = output.system[i].indexOf("Skills provide specialized instructions")
-        if (skillsIdx !== -1) {
-          const instructionsIdx = output.system[i].indexOf("Instructions from:", skillsIdx)
-          if (instructionsIdx !== -1) {
-            output.system[i] =
-              output.system[i].slice(0, skillsIdx) + output.system[i].slice(instructionsIdx)
-          } else {
-            output.system[i] = output.system[i].slice(0, skillsIdx)
-          }
         }
       }
     },

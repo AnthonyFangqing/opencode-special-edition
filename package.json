@@ -1,14 +1,51 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "opencode-special-edition",
   "version": "1.0.0",
+  "description": "OpenCode plugin that replaces the default system prompt and built-in tool descriptions with shorter alternatives to reduce prompt size.",
   "type": "module",
-  "exports": {
-    ".": "./index.ts"
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "prompt",
+    "llm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyFangqing/opencode-special-edition.git"
   },
-  "dependencies": {
-    "@opencode-ai/plugin": "*"
+  "bugs": {
+    "url": "https://github.com/AnthonyFangqing/opencode-special-edition/issues"
+  },
+  "homepage": "https://github.com/AnthonyFangqing/opencode-special-edition#readme",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "default": "./index.ts"
+    }
+  },
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "files": [
+    "index.ts",
+    "read-content.ts",
+    "prompt",
+    "tool",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
   },
   "peerDependencies": {
-    "@opencode-ai/plugin": "*"
+    "@opencode-ai/plugin": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@opencode-ai/plugin": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.14.20"
   }
 }
