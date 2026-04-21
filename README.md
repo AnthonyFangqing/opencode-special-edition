@@ -1,4 +1,4 @@
-# opencode-slim
+# opencode-special-edition
 
 A plugin for [opencode](https://opencode.ai) that dramatically reduces the token count of prompts sent to LLMs, modeled after [pi](https://github.com/mariozechner/pi)'s minimal philosophy.
 
@@ -29,7 +29,7 @@ Add to your `opencode.jsonc`:
 
 ```jsonc
 {
-  "plugin": ["./path/to/opencode-slim/index.ts"]
+  "plugin": ["./path/to/opencode-special-edition/index.ts"]
 }
 ```
 
@@ -37,14 +37,14 @@ Or install as a local plugin in `.opencode/plugin/`:
 
 ```bash
 mkdir -p .opencode/plugin
-cp -r opencode-slim/ .opencode/plugin/opencode-slim/
+cp -r opencode-special-edition/ .opencode/plugin/opencode-special-edition/
 ```
 
 Then in `opencode.jsonc`:
 
 ```jsonc
 {
-  "plugin": ["./.opencode/plugin/opencode-slim/index.ts"]
+  "plugin": ["./.opencode/plugin/opencode-special-edition/index.ts"]
 }
 ```
 
