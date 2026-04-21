@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "opencode-special-edition",
+  "name": "@anthonyfangqing/opencode-special-edition",
   "version": "1.0.0",
   "description": "OpenCode plugin that replaces the default system prompt and built-in tool descriptions with shorter alternatives to reduce prompt size.",
   "type": "module",
@@ -19,6 +19,9 @@
     "url": "https://github.com/AnthonyFangqing/opencode-special-edition/issues"
   },
   "homepage": "https://github.com/AnthonyFangqing/opencode-special-edition#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./index.ts",

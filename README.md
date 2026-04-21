@@ -51,14 +51,14 @@ Exact counts depend on model tokenizer and OpenCode version.
 ### From npm
 
 ```bash
-npm install opencode-special-edition
+npm install @anthonyfangqing/opencode-special-edition
 ```
 
 In `opencode.json` / `opencode.jsonc`:
 
 ```jsonc
 {
-  "plugin": ["opencode-special-edition"]
+  "plugin": ["@anthonyfangqing/opencode-special-edition"]
 }
 ```
 
@@ -90,10 +90,10 @@ Copy or link the package under `.opencode/plugins/` (see [OpenCode plugins](http
 
 ## Publish
 
-From this directory, with an npm account and `npm login`:
+From this directory, logged in as a member of the [anthonyfangqing](https://www.npmjs.com/org/anthonyfangqing) org (`npm login`):
 
 ```bash
 npm publish
 ```
 
-Use `npm pack --dry-run` to inspect the tarball before publishing.
+`package.json` sets `publishConfig.access` to `public` so the scoped package is visible without passing `--access public`. Use `npm pack --dry-run` to inspect the tarball before publishing.
