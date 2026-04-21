@@ -1,5 +1,7 @@
 # opencode-special-edition
 
+MOSTLY CLANKER-BUILT
+
 OpenCode plugin that shortens the default system prompt and built-in tool descriptions so each request sends fewer tokens. Inspired by the minimal style of [pi](https://github.com/mariozechner/pi).
 
 The built-in JSON parameter schemas for tools are unchanged. This package only replaces the long prose descriptions where a shorter version exists.
